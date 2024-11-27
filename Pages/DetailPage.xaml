@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:vm="clr-namespace:BlendiVerseApp.ViewModels"
+             xmlns:models="clr-namespace:BlendiVerseApp.Models"
+             x:Class="BlendiVerseApp.Pages.DetailPage"
+             BackgroundColor="#F1F2ED"
+             Title="Smoothie Details"
+             Shell.NavBarIsVisible="False"
+             x:DataType="vm:DetailsViewModel">
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="QuantityBtn" TargetType="ImageButton">
+                <Setter Property="HeightRequest" Value="40"/>
+                <Setter Property="WidthRequest" Value="40"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="Padding" Value="0"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid RowDefinitions="*, Auto">
+        <!-- ScrollView for smoothie details -->
+        <ScrollView Grid.Row="0" Padding="15">
+            <VerticalStackLayout Spacing="15">
+                <!-- Smoothie Image -->
+                <Image Source="{Binding Smoothie.Image}"
+                       HeightRequest="200"
+                       WidthRequest="200"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"/>
+                
+                <!-- Smoothie Name -->
+                <Label Text="{Binding Smoothie.Name}"
+                       FontSize="25"
+                       FontAttributes="Bold"
+                       FontFamily="LexendBold"
+                       HorizontalOptions="Center"/>
+                
+                <!-- Price and Rating -->
+                <Grid ColumnDefinitions="*, *">
+                    <Label Grid.Column="0"
+                           Text="{Binding Smoothie.Price, StringFormat='{0} ฿'}"
+                           FontFamily="LexendBold"
+                           FontSize="18"/>
+                    <HorizontalStackLayout Grid.Column="1"
+                                           HorizontalOptions="End"
+                                           Spacing="2"
+                                           VerticalOptions="Center">
+                        <Label Text="4" FontSize="16" FontFamily="LexendBold"/>
+                        <Image Source="star"
+                               HeightRequest="15"
+                               WidthRequest="15">
+                            <Image.Behaviors>
+                                <toolkit:IconTintColorBehavior TintColor="DarkGoldenrod"/>
+                            </Image.Behaviors>
+                        </Image>
+                    </HorizontalStackLayout>
+                </Grid>
+
+                <!-- Description Section -->
+                <Label Text="Description"
+                       FontSize="18"
+                       FontFamily="LexendBold"
+                       Margin="0, 10"/>
+                <Label FontSize="14"
+                       FontFamily="Lexend"
+                       LineHeight="1.5"
+                       Text="This is some random description for this smoothie, displayed in the details page to check and design the UI. This is a placeholder description to ensure a proper scrollable view. This is some random description to ensure a proper scrollable view. This is a placeholder description to ensure a proper scrollable view.
+               This is some random description for this smoothie, displayed in the details page to check and design the UI. This is a placeholder description to ensure a proper scrollable view. This is some random description to ensure a proper scrollable view. This is a placeholder description to ensure a proper scrollable view."/>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- Bottom Box for Cart Quantity and Order Button -->
+        <Border x:Name="bottomBox" Grid.Row="1"
+                StrokeThickness="0"
+                BackgroundColor="#FFFAE1"
+                Margin="-1"
+                HeightRequest="150"
+                Padding="15"
+                StrokeShape="RoundRectangle 30">
+            <Border.Shadow>
+                <Shadow Brush="#FFCCEFCC" Radius="100"/>
+            </Border.Shadow>
+            <Grid RowDefinitions="Auto, Auto"
+                  ColumnDefinitions="*, *">
+                
+                <!-- Price Display in Bottom Box -->
+                <Label Grid.Row="0"
+                       Grid.Column="0"
+                       Text="{Binding Smoothie.Amount, StringFormat='{0} ฿'}"
+                       FontSize="25"
+                       TextColor="#25330F"
+                       FontFamily="LexendBold"
+                       VerticalOptions="Center"/>
+                
+                <!-- Quantity Controls (Add / Remove) -->
+                <Grid Grid.Row="0"
+                      Grid.Column="1"
+                      ColumnDefinitions="50, 40, 50"
+                      HorizontalOptions="End"
+                      VerticalOptions="Center">
+                    <!-- Remove from Cart Button -->
+                    <ImageButton Grid.Column="0"
+                                 Source="minus"
+                                 Style="{StaticResource QuantityBtn}"
+                                 Command="{Binding RemoveFromCartCommand}">
+                        <ImageButton.Behaviors>
+                            <toolkit:IconTintColorBehavior TintColor="#A66D45"/>
+                        </ImageButton.Behaviors>
+                    </ImageButton>
+                    <!-- Cart Quantity Display -->
+                    <Label Grid.Column="1"
+                           Text="{Binding Smoothie.CartQuantity}"
+                           TextColor="#25330F"
+                           FontFamily="Lexend"
+                           FontSize="30"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center"/>
+                    <!-- Add to Cart Button -->
+                    <ImageButton Grid.Column="2"
+                                 Source="plus"
+                                 Style="{StaticResource QuantityBtn}"
+                                 Command="{Binding AddToCartCommand}">
+                        <ImageButton.Behaviors>
+                            <toolkit:IconTintColorBehavior TintColor="#A66D45"/>
+                        </ImageButton.Behaviors>
+                    </ImageButton>
+                </Grid>
+
+                <!-- View My Order Button -->
+                <Button Grid.Row="1"
+                        Grid.ColumnSpan="2"
+                        Text="View My Order"
+                        FontFamily="LexendBold"
+                        FontSize="20"
+                        CornerRadius="22"
+                        BackgroundColor="#698369"
+                        HorizontalOptions="Center"
+                        Padding="100, 10"
+                        VerticalOptions="End"
+                        Margin="0, 20"
+                        Command="{Binding ViewCartCommand}"/>
+            </Grid>
+        </Border>
+
+        <!-- Back Button -->
+        <ImageButton Source="back"
+                     VerticalOptions="Start"
+                     HorizontalOptions="Start"
+                     HeightRequest="45"
+                     WidthRequest="60"
+                     Margin="15"
+                     Clicked="ImageButton_Clicked">
+            <ImageButton.Behaviors>
+                <toolkit:IconTintColorBehavior TintColor="#25330F"/>
+            </ImageButton.Behaviors>
+        </ImageButton>
+    </Grid>
+</ContentPage>

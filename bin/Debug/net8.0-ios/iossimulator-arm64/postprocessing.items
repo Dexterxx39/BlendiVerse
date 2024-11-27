@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <_PostProcessingItem Include="BlendiVerseApp.app/BlendiVerseApp">
+      <IsAppExtension>false</IsAppExtension>
+      <BCSymbolMapName>BlendiVerseApp.bcsymbolmap</BCSymbolMapName>
+      <NoDSymUtil>true</NoDSymUtil>
+      <dSYMSourcePathExists>false</dSYMSourcePathExists>
+      <NoSymbolStrip>true</NoSymbolStrip>
+      <dSYMInfoPlistRelativePath>BlendiVerseApp.app.dSYM\Contents\Info.plist</dSYMInfoPlistRelativePath>
+      <SymbolFile>/Users/ryu/DX212/for_final_project/BlendiVerseApp/BlendiVerseApp/obj/Debug/net8.0-ios/iossimulator-arm64/mtouch-symbols.list</SymbolFile>
+      <DSymName>BlendiVerseApp.app.dSYM</DSymName>
+      <SourceProjectPath>/Users/ryu/DX212/for_final_project/BlendiVerseApp/BlendiVerseApp</SourceProjectPath>
+      <IsXPCService></IsXPCService>
+    </_PostProcessingItem>
+  </ItemGroup>
+</Project>

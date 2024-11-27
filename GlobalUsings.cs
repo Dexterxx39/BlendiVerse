@@ -1,0 +1,10 @@
+global using System;
+global using System.Collections.ObjectModel;
+global using BlendiVerseApp.Services;
+global using BlendiVerseApp.Models;
+global using BlendiVerseApp.ViewModels;
+global using BlendiVerseApp.Pages;
+global using CommunityToolkit.Mvvm.ComponentModel;
+global using CommunityToolkit.Mvvm.Input;
+global using CommunityToolkit.Maui.Alerts;
+global using CommunityToolkit.Maui.Core;

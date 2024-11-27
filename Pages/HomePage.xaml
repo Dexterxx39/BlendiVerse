@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:vm="clr-namespace:BlendiVerseApp.ViewModels"
+             xmlns:models="clr-namespace:BlendiVerseApp.Models"
+             x:Class="BlendiVerseApp.Pages.HomePage"
+             Title="BlendiVerse"
+             Padding="15"
+             BackgroundColor="#F1F2ED">
+    <ScrollView>
+        <VerticalStackLayout Spacing="10">
+            <Border StrokeShape="RoundRectangle 10"
+                    StrokeThickness="0"
+                    BackgroundColor="#F8CEC4"
+                    VerticalOptions="Start"
+                    Padding="15">
+                <Grid ColumnDefinitions="*, 150"
+                      RowDefinitions="*, Auto">
+                    <VerticalStackLayout Grid.Row="0"
+                                         Grid.Column="0"
+                                         Spacing="10">
+                        <Label Text="Super Strawberry"
+                               FontSize="20"
+                               FontFamily="Lexend"
+                               FontAttributes="Bold"
+                               VerticalOptions="Center"/>
+                        <Label Text="This Month Featured Drink!!"
+                               FontFamily="Lexend"/>
+                    </VerticalStackLayout>
+                    <Button Grid.Row="1"
+                            Grid.Column="0"
+                            Text="Get it now"
+                            BackgroundColor="#F6AF1A"
+                            TextColor="Black"
+                            FontAttributes="Bold"
+                            FontFamily="Lexend"
+                            FontSize="16"
+                            CornerRadius="22"
+                            HorizontalOptions="Center"
+                            Padding="30, 0"/>
+                    <Image Grid.RowSpan="2"
+                           Grid.Column="1"
+                           Source="smoothie1"
+                           HeightRequest="150"
+                           WidthRequest="150"/>
+                </Grid>
+            </Border>
+
+            <Border StrokeShape="RoundRectangle 22"
+                    StrokeThickness="2"
+                    Stroke="#25330F">
+                <Label Text="Search here..."
+                       TextColor="#25330F"
+                       FontFamily="Lexend"
+                       Padding="10, 14"
+                       VerticalTextAlignment="Center"/>
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding GoToAllSmoothiesPageCommand}"
+                                          CommandParameter="{x:Boolean true}"/>
+                </Border.GestureRecognizers>
+            </Border>
+
+            <Grid ColumnDefinitions="*, *">
+                <Label Grid.Column="0"
+                       Text="Recommended for you"
+                       VerticalOptions="End"
+                       FontSize="15"
+                       FontFamily="Lexend"
+                       FontAttributes="Bold"/>
+                <Label Grid.Column="1"
+                       Text="View all"
+                       FontFamily="Lexend"
+                       HorizontalOptions="End"
+                       VerticalOptions="End"
+                       TextDecorations="Underline">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoToAllSmoothiesPageCommand}"
+                                              CommandParameter="{x:Boolean false}"/>
+                    </Label.GestureRecognizers>
+                </Label>
+            </Grid>
+
+            <FlexLayout BindableLayout.ItemsSource="{Binding Smoothies}"
+                        Wrap="Wrap">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate x:DataType="models:Smoothie">
+                        <Border FlexLayout.Basis="50%"
+                                StrokeShape="RoundRectangle 10"
+                                StrokeThickness="0"
+                                BackgroundColor="#FFFAE1"
+                                Padding="10"
+                                Margin="2">
+                            <Grid RowDefinitions="150, Auto, auto, Auto"
+                                  RowSpacing="5">
+                                <Image Grid.Row="0"
+                                       Source="{Binding Image}"
+                                       HeightRequest="150"
+                                       WidthRequest="130"/>
+                                <Label Grid.Row="1"
+                                       Text="{Binding Name}"
+                                       HorizontalOptions="Center"
+                                       FontSize="18"
+                                       FontFamily="LexendBold"/>
+                                <Grid Grid.Row="2"
+                                      ColumnDefinitions="*, *">
+                                    <Label Grid.Column="0"
+                                           Text="{Binding Price, StringFormat='{0} ฿'}"
+                                           VerticalOptions="Center"
+                                           FontFamily="Lexend"
+                                           FontAttributes="Bold"/>
+                                    <HorizontalStackLayout Grid.Column="1"
+                                                           HorizontalOptions="End"
+                                                           Spacing="2"
+                                                           VerticalOptions="Center">
+                                        <Label Text="4"/>
+                                        <Image Source="star"
+                                               HeightRequest="15"
+                                               WidthRequest="15">
+                                            <Image.Behaviors>
+                                                <toolkit:IconTintColorBehavior TintColor="#F6AF1A"/>
+                                            </Image.Behaviors>
+                                        </Image>
+
+                                    </HorizontalStackLayout>
+                                </Grid>
+                                <Button Grid.Row="3"
+                                        Text="View more"
+                                        BackgroundColor="#698369"
+                                        TextColor="White"
+                                        CornerRadius="22"
+                                        FontFamily="LexendBold"
+                                        FontAttributes="Bold"
+                                        FontSize="16"
+                                        VerticalOptions="End"
+                                        HorizontalOptions="Center"
+                                        Padding="25, 0"
+                                        Command="{Binding Source={x:RelativeSource AncestorType={x:Type vm:HomeViewModel}}, Path=GoToDetailsPageCommand}"
+                                        CommandParameter="{Binding .}"/>
+                            </Grid>
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={x:RelativeSource AncestorType={x:Type vm:HomeViewModel}}, Path=GoToDetailsPageCommand}"
+                                                      CommandParameter="{Binding .}"/>
+
+                            </Border.GestureRecognizers>
+                        </Border>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+
+            </FlexLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

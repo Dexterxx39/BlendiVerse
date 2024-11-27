@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BlendiVerseApp.Pages.MainPage"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="#F1F2ED">
+
+    <Grid RowDefinitions="Auto, *, Auto"
+          Padding="15, 25">
+        <Label Grid.Row="0"
+               Text="Welcome to"
+               FontSize="50"
+               FontFamily="LexendBold"
+               HorizontalOptions="Center"/>
+
+        <Image Grid.Row="1"
+               Source="blendiverselogo.png"
+               HeightRequest="350"
+               WidthRequest="350"
+               VerticalOptions="Center"
+               HorizontalOptions="Center"/>
+
+        <VerticalStackLayout Grid.Row="2"
+                             Spacing="15">
+            <Label Text="Pure Blends, Fresh Taste"
+                   FontSize="27"
+                   FontFamily="LexendBold"/>
+            <Label Text="Experience the vibrant flavors of fresh smoothies, crafted to perfection and inspired by nature's finest ingredients."
+                   FontSize="18"
+                   FontFamily="Lexend"
+                   LineHeight="1.2"/>
+            <Border StrokeShape="RoundRectangle 25"
+                    StrokeThickness="0"
+                    BackgroundColor="#CADB95"
+                    HeightRequest="50">
+
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped">
+                    </TapGestureRecognizer>
+                </Border.GestureRecognizers>
+
+                <HorizontalStackLayout HorizontalOptions="Center"
+                                       VerticalOptions="Center"
+                                       Spacing="10"
+                                       Padding="0, 5">
+                    <Label Text="Get Started"
+                           VerticalOptions="Center"
+                           FontSize="22"
+                           FontFamily="LexendBold"/>
+                    <Image Source="right_arrow"
+                           VerticalOptions="Center"
+                           HeightRequest="30"/>
+
+                </HorizontalStackLayout>
+
+            </Border>
+
+        </VerticalStackLayout>
+    </Grid>
+
+</ContentPage>
